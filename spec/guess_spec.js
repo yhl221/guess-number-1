@@ -7,4 +7,4 @@ describe('Guess', () => {
         const result = Guess.guess('1234');
         expect(result).toEqual('4A0B');
     });
-})
+});
