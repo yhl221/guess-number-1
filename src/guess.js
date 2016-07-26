@@ -1,4 +1,4 @@
-const AnswerGenerator = require('./anser-generator');
+const AnswerGenerator = require('./answer-generator');
 const CompareNumber = require('./compare-number');
 
 class Guess {

@@ -1,4 +1,4 @@
-const AnswerGenerator = require('../src/anser-generator');
+const AnswerGenerator = require('../src/answer-generator');
 const Guess = require('../src/guess');
 
 describe('Guess', () => {
