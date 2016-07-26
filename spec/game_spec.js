@@ -18,7 +18,22 @@ describe('Game', () => {
         expect(console.log).toHaveBeenCalledWith('Congratulations!');
     });
 
-    it('should game over when run out of chance')
+    it('should game over when run out of chance', () => {
+        spyOn(AnswerGenerator, 'generate').and.returnValue('1234');
+        spyOn(console, 'log');
+
+        const game = new Game();
+        game.start();
+
+        expect(console.log).toHaveBeenCalledWith('Welcome!\n');
+
+        for (let i = 0; i < 6; i++) {
+            expect(console.log).toHaveBeenCalledWith('Please input your number(6):');
+            stdin.send('1235');
+        }
+
+        expect(console.log).toHaveBeenCalledWith('Game Over');
+    });
     
     it('should prompt invalid input')
 });
