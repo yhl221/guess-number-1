@@ -8,7 +8,7 @@ class AnswerGenerator {
             result.push((digits.splice(randomNumber, 1))[0]);
         }
         
-        return result;
+        return result.join('');
     }
 }
 
