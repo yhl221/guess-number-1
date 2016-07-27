@@ -30,7 +30,8 @@ describe('Game', () => {
             expect(console.log).toHaveBeenCalledWith('3A0B');
         }
 
-        expect(console.log).toHaveBeenCalledWith('Game Over');
+        expect(console.log).toHaveBeenCalledWith('Game Over\n');
+        expect(console.log).toHaveBeenCalledWith('Answer:1234');
         expect(process.exit).toHaveBeenCalled();
     });
     
