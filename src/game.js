@@ -34,7 +34,7 @@ class Game {
     }
 
     ask() {
-        console.log('Please input your number(6):');
+        console.log(`Please input your number(${this.chances}):`);
     }
 
     validate(input) {
