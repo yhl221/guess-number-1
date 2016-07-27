@@ -19,6 +19,7 @@ describe('Game', () => {
         stdin.send('1234');
 
         expect(console.log).toHaveBeenCalledWith('Congratulations!');
+        expect(process.exit).toHaveBeenCalled();
     });
 
     it('should game over when run out of chance', () => {

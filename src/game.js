@@ -6,7 +6,6 @@ class Game {
         this.answer = AnswerGenerator.generate();
         this.chances = 6;
 
-        process.stdin.resume();
         process.stdin.setEncoding('utf8');
         process.stdin.on('data', (input) => {
             if (!this.validate(input)) {
@@ -14,6 +13,7 @@ class Game {
                 this.ask();
             } else if (input === this.answer) {
                 console.log('Congratulations!');
+                process.exit();
             } else {
                 console.log(CompareNumber.compare(input, this.answer));
                 this.chances--;
