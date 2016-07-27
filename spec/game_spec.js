@@ -6,6 +6,7 @@ describe('Game', () => {
     beforeEach(() => {
         spyOn(AnswerGenerator, 'generate').and.returnValue('1234');
         spyOn(console, 'log');
+        spyOn(process, 'exit');
 
         const game = new Game();
         game.start();
@@ -26,10 +27,19 @@ describe('Game', () => {
         for (let i = 0; i < 6; i++) {
             expect(console.log).toHaveBeenCalledWith('Please input your number(6):');
             stdin.send('1235');
+            expect(console.log).toHaveBeenCalledWith('3A0B');
         }
 
         expect(console.log).toHaveBeenCalledWith('Game Over');
+        expect(process.exit).toHaveBeenCalled();
     });
     
-    it('should prompt invalid input')
+    it('should prompt invalid input', () => {
+        expect(console.log).toHaveBeenCalledWith('Welcome!\n');
+        expect(console.log).toHaveBeenCalledWith('Please input your number(6):');
+
+        stdin.send('1134');
+
+        expect(console.log).toHaveBeenCalledWith('Cannot input duplicate numbers!');
+    });
 });

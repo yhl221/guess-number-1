@@ -1,4 +1,5 @@
 const AnswerGenerator = require('./answer-generator');
+const CompareNumber = require('./compare-number');
 
 class Game {
     constructor() {
@@ -7,6 +8,23 @@ class Game {
 
         process.stdin.resume();
         process.stdin.setEncoding('utf8');
+        process.stdin.on('data', (input) => {
+            if (!this.validate(input)) {
+                console.log('Cannot input duplicate numbers!');
+                this.ask();
+            } else if (input === this.answer) {
+                console.log('Congratulations!');
+            } else {
+                console.log(CompareNumber.compare(input, this.answer));
+                this.chances--;
+                if (this.isGameOver()) {
+                    console.log('Game Over');
+                    process.exit();
+                } else {
+                    this.ask();
+                }
+            }
+        });
     }
 
     start() {
@@ -15,19 +33,12 @@ class Game {
     }
 
     ask() {
-        if (this.isGameOver()) {
-            console.log('Game Over');
-            return;
-        }
-
         console.log('Please input your number(6):');
-        process.stdin.on('data', (input) => {
-            if (input === this.answer) {
-                console.log('Congratulations!');
-            } else {
-                this.chances--;
-                this.ask();
-            }
+    }
+
+    validate(input) {
+        return input.split('').every((digit, index, array) => {
+            return array.lastIndexOf(digit) === index;
         });
     }
 
