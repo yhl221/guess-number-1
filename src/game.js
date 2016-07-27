@@ -11,19 +11,23 @@ class Game {
             if (!this.validate(input)) {
                 console.log('Cannot input duplicate numbers!');
                 this.ask();
-            } else if (input === this.answer) {
-                console.log('Congratulations!');
-                process.exit();
             } else {
-                console.log(CompareNumber.compare(input, this.answer));
-                this.chances--;
-                if (this.isGameOver()) {
-                    console.log('Game Over\n');
-                    console.log(`Answer:${this.answer}`);
+                const result = CompareNumber.compare(input, this.answer);
+                if (result === '4A0B') {
+                    console.log('Congratulations!');
                     process.exit();
                 } else {
-                    this.ask();
+                    console.log(result);
+                    this.chances--;
+                    if (this.isGameOver()) {
+                        console.log('Game Over\n');
+                        console.log(`Answer:${this.answer}`);
+                        process.exit();
+                    } else {
+                        this.ask();
+                    }
                 }
+
             }
         });
     }
